@@ -11,7 +11,9 @@
         formControlName="name"
         placeholder="Nombre de la persona"
       />
-      <span class="form-text text-danger"> error message </span>
+      <span class="form-text text-danger" *ngIf="isValidField('name')">
+        {{ getFieldError("name") }}
+      </span>
     </div>
   </div>
 
@@ -40,9 +42,20 @@
         <div class="input-group">
           <input class="form-control" [formControlName]="i" />
 
-          <button class="btn btn-outline-danger" type="button">Eliminar</button>
+          <button
+            class="btn btn-outline-danger"
+            (click)="onDeleteFavorite(i)"
+            type="button"
+          >
+            Eliminar
+          </button>
         </div>
-        <span class="form-text text-danger"> Este campo es requerido </span>
+        <span
+          class="form-text text-danger"
+          *ngIf="isValidFieldInArray(getFavoritGames, i)"
+        >
+          Este campo es requerido
+        </span>
       </div>
     </div>
   </div>
