@@ -8,6 +8,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 } from '../../../shared/validators/validators'; */
 
 import { ValidatorsService } from '../../../shared/services/validators.service';
+import { EmailValidatorService } from '../../../shared/validators/email-validatior.service';
 
 @Component({
   selector: 'app-register-page',
@@ -29,6 +30,7 @@ export class RegisterPageComponent {
         Validators.required,
         Validators.pattern(this.validatorsService.emailPattern),
       ],
+      [new EmailValidatorService()],
     ],
     username: ['', [Validators.required, this.validatorsService.cantBeStrider]],
     password: ['', [Validators.required, Validators.minLength(6)]],
